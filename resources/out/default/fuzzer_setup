@@ -1,0 +1,4 @@
+# environment variables:
+AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
+# command line:
+'/home/susun/.local/share/afl.rs/rustc-1.67.1-d5a82bb/afl.rs-0.12.14/afl/bin/afl-fuzz' '-i' 'resources/in' '-o' 'resources/out' 'target/release/naive_interpreter'

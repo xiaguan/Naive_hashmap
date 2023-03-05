@@ -1,6 +1,5 @@
 #[macro_use]
 extern crate afl;
-extern crate url;
 
 extern crate naive_hashmap;
 
@@ -8,12 +7,12 @@ use std::io;
 use std::io::prelude::*;
 
 fn main() {
-    let mut hash_map = naive_hashmap::HashMap::new();
-
-    let n = io::stdin();
-    for line in n.lock().lines() {
-        if let Ok(line) = line {
-            let cmd : Vec<&str> = line.as_str().split(' ').collect();
+    fuzz!(|data: &[u8]| {
+        let mut hash_map = naive_hashmap::HashMap::new();
+        let content = String::from_utf8_lossy(data);
+        let lines = content.lines();
+        for line in lines {
+            let cmd: Vec<&str> = line.split(' ').collect();
             if cmd.len() == 0 {
                 continue;
             }
@@ -41,5 +40,6 @@ fn main() {
                 }
             }
         }
-    }
+    });
 }
+
