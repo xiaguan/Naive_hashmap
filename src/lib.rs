@@ -132,7 +132,6 @@ mod test {
         T: Arbitrary,
     {
         fn arbitrary(g: &mut Gen) -> Self {
-            // genreate a random number between 0 and 1
             let random_number = usize::arbitrary(g) % 100;
             if random_number < 50 {
                 Action::Insert(T::arbitrary(g), u16::arbitrary(g))
