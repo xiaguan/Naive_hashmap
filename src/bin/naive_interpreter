@@ -2,10 +2,6 @@
 extern crate afl;
 
 extern crate naive_hashmap;
-
-use std::io;
-use std::io::prelude::*;
-
 fn main() {
     fuzz!(|data: &[u8]| {
         let mut hash_map = naive_hashmap::HashMap::new();
@@ -42,4 +38,3 @@ fn main() {
         }
     });
 }
-
